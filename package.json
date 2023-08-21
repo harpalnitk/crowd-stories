@@ -33,6 +33,7 @@
 	"dependencies": {
 		"@fontsource/metropolis": "^5.0.7",
 		"@unsass/breakpoint": "^2.3.0",
+		"firebase": "^10.1.0",
 		"lucide-svelte": "^0.265.0",
 		"modern-normalize": "^2.0.0",
 		"tippy.js": "^6.3.7"

@@ -75,13 +75,13 @@ which has this and this can receive html element
 		text-decoration: none;
 		&.button-solid {
 			background-color: var(--accent-color);
-			color: #000;
+			color: var(--dark-gray);
 			border: 2px solid var(--accent-color);// to have same height as outline button when used together
 		}
 		&.button-outline {
 			background: none;
-			color: var(--text-color);
-			border: 2px solid;
+			color: var(--accent-color);
+			border: 2px solid var(--accent-color);
 		}
 		&.button-danger {
 			background-color: var(--error);
@@ -98,7 +98,8 @@ which has this and this can receive html element
 				background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
 			}
 			&.button-outline {
-				background-image: linear-gradient(rgba(255, 255, 255, 0.1) 0 0);
+				background-image: linear-gradient(var(--accent-color) 0 0);
+				color: var(--dark-gray);
 			}
 		}
 		&:active {
@@ -107,7 +108,9 @@ which has this and this can receive html element
 				background-image: linear-gradient(rgba(255, 255, 255, 0.1) 0 0);
 			}
 			&.button-outline {
-				background-image: linear-gradient(rgba(255, 255, 255, 0.2) 0 0);
+				background-image: linear-gradient(var(--accent-color) 0 0);
+				opacity: 0.9;
+				color: var(--dark-gray);
 			}
 		}
 	}

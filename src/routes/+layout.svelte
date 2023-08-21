@@ -5,7 +5,8 @@
     import '../styles/main.scss';
     import {page} from '$app/stores';
 
-    import {Navigation} from '$components';
+    import {Navigation, Header, Seo} from '$components';
+	import {user,userData} from '$lib/firebase';
 
 
 // for changing opacity of header on scroll
@@ -17,13 +18,25 @@
 	$: if (topbar) {
 		headerOpacity = scrollY / topbar.offsetHeight < 1 ? scrollY / topbar.offsetHeight : 1;
 	}
+
+
+
+
+
+//when u subscribe to a store it only 
+//triggers a document read from firestore once
+//if we want to use store globally
+//it's a good idea to subscribe to the store in the root layout
+$user;
+$userData;
 </script>
 
 
 <svelte:window bind:scrollY />
-<svelte:head>
+<!-- <svelte:head>
 	<title>Crowd-Stories {$page.data.title ? ` - ${$page.data.title}` : ''}</title>
-</svelte:head>
+</svelte:head> -->
+<Seo title="Crowd-Stories {$page.data.title ? ` - ${$page.data.title}` : ''}" description="This is a web page" type="WebPage" />
 
 <div id="main">
   <div id="sidebar">
@@ -36,13 +49,14 @@
       style:background-color={$page.data.color ? $page.data.color: "var(--header-color)"}
       style:opacity={`${headerOpacity}`}
     />
-topbar
+	<Header/>
     </div>
-    <main id="main-content">
+    <main id="main-content" class:logged-in={user}>
 main content
 <slot />
     </main>
 
+  </div>
 
 </div>
 
@@ -89,7 +103,12 @@ main content
 					padding: 30px 30px 60px;
 				}
 
+				// on logout we don'y have header
+				// so we don't need padding top
+				&.logged-in {
+					padding-top: calc(30px + var(--header-height));
 			}
 		}
+	}
 	}
 </style>

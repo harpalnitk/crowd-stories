@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { Home, Search, ListMusic, Menu,X, type Icon } from 'lucide-svelte';
+	import { Home, Search, ListMusic, Menu,X,ScrollText, type Icon, Scroll } from 'lucide-svelte';
 	import { tick, type ComponentType } from 'svelte';
 	import logo from '$assets/Spotify_Logo_RGB_White.png';
 	import { page } from '$app/stores';
 	import { fade } from 'svelte/transition';
 	import { beforeNavigate } from '$app/navigation';
 	import {IconButton} from '$components';
+	import { user } from "$lib/firebase";
 
 	export let desktop: boolean;
  
@@ -149,7 +150,8 @@
 				/>
 			{/if}
 			<div class="logo-and-menu">
-				<img src={logo} class="logo" alt="Spotify" />
+				<!-- <img src={logo} class="logo" alt="Spotify" /> -->
+				<ScrollText class='logo' size=30/>
 				<ul>
 					{#each menuItems as item, index}
 					{@const iconProps = {

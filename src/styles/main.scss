@@ -11,21 +11,58 @@
 @import 'tippy-theme';
 
 :root {
-	--bg-color: #191414;
-	--sidebar-color: #000;
-	--header-color: #000;
-	--text-color: #fff;
-	--accent-color: #1db954;
-	--menu-background-color: #2e2e2e;
-	--light-gray: #a7a7a7;
-	--medium-gray: #2e2e2e;
-	--dark-gray: #181818;
-	--menu-text-color: #fff;
-	--border: rgba(255, 255, 255, 0.15);
+	--bg-color: #f0f8ff;
+	--sidebar-color: #fff;
+	--header-color: #fff;
+	--text-color: #000;
+	--accent-color: hsl(141, 73%, 42%);
+	--menu-background-color: #d5d5d5;
+	--menu-text-color: #222;
+	--border: #00000026;
+	
+	--light-gray: #ededed;
+	--medium-gray: #d5d5d5;
+	--dark-gray: #303030;
 	--sidebar-width: 250px;
 	--header-height: 64px;
 	--error: #c24141;
 	--warning: #e7a917;
+	--card-bg:#fff;
+	--card-text:#777;
+
+
+	//DaisUI
+	--tw-translate-x: 0;
+    --tw-translate-y: 0;
+	--tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+
+	// --b3: 213 18% 10%;
+	// --bc: 220 13% 69%;
+
+	// //primary
+	// //--p: 262 80% 50%;
+	// --p:141 73% 42%;
+    // --pc: 0 0% 100%;
+
+
+
+}
+
+[data-theme='dark']{
+    --bg-color: #24292d;
+	--sidebar-color: #000;
+	--header-color: #000;
+	--text-color: #fff;
+	--accent-color: hsl(141, 73%, 42%);
+	--menu-background-color: #323840;
+	--menu-text-color: #ddd;
+	--border: rgba(255, 255, 255, 0.15);
+	--card-bg:#323840;
+	--card-text:#ccc;
 }
 
 body {
@@ -49,16 +86,27 @@ input {
 	color: var(--medium-gray);
 }
 
+
 h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h2{
 	font-weight: 700;
-	line-height: 1.4;
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
+	line-height: 1.5;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+h3,h4{
+	font-weight: 500;
+	line-height: 1.2;
+	margin-top: 1.2em;
+	margin-bottom: 1.2em;
+}
+
+h5,h6{
+	font-weight: 400;
+	line-height: 1;
+	margin-top: 0.8em;
+	margin-bottom: 0.8em;
 }
 
 h1 {
@@ -95,6 +143,7 @@ select,
 input,
 button,
 a {
+	text-decoration: none;
 	&:focus-visible {
 		outline: 2px solid var(--accent-color);
 		outline-offset: 2px;
@@ -158,3 +207,148 @@ a {
 		overflow: hidden;
 	}
 }
+
+
+//STEPPER CODE FROM DAISYUI
+.steps {
+    display: inline-grid;
+    grid-auto-flow: column;
+    overflow: hidden;
+    overflow-x: auto;
+    counter-reset: step;
+    grid-auto-columns: 1fr;
+
+
+}
+.steps .step {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-columns: auto;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    grid-template-rows: 40px 1fr;
+    place-items: center;
+    text-align: center;
+    min-width: 4rem/* 64px */;
+}
+.steps .step:before {
+    top: 0px;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    height: 0.5rem/* 8px */;
+    width: 100%;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    //--tw-bg-opacity: 1;
+    // background-color: hsl(var(--b3) / var(--tw-bg-opacity));
+	background-color: var(--menu-background-color);
+    //--tw-text-opacity: 1;
+    //color: hsl(var(--bc) / var(--tw-text-opacity));
+	color: var(--menu-text-color);
+    content: "";
+    margin-left: -100%;
+}
+.steps .step:after {
+    content: counter(step);
+    counter-increment: step;
+    z-index: 1;
+    position: relative;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    display: grid;
+    height: 2rem/* 32px */;
+    width: 2rem/* 32px */;
+    place-items: center;
+    place-self: center;
+    border-radius: 9999px;
+    // --tw-bg-opacity: 1;
+    // background-color: hsl(var(--b3) / var(--tw-bg-opacity));
+    // --tw-text-opacity: 1;
+    // color: hsl(var(--bc) / var(--tw-text-opacity));
+	background-color: var(--menu-background-color);
+	color: var(--menu-text-color);
+}
+.steps .step:first-child:before {
+    content: none;
+}
+.steps .step[data-content]:after {
+    content: attr(data-content);
+}
+
+.steps .step-primary + .step-primary:before,
+  .steps .step-primary:after {
+    // --tw-bg-opacity: 1;
+    // background-color: hsl(var(--p) / var(--tw-bg-opacity));
+	background-color: var(--accent-color);
+    // --tw-text-opacity: 1;
+    // color: hsl(var(--pc) / var(--tw-text-opacity));
+	color: var(--text-color);
+}
+.steps .step-primary + .step-primary:before,
+  .steps .step-primary:after {
+    // --tw-bg-opacity: 1;
+    // background-color: hsl(var(--p) / var(--tw-bg-opacity));
+	background-color: var(--accent-color);
+    // --tw-text-opacity: 1;
+    // color: hsl(var(--pc) / var(--tw-text-opacity));
+	color: var(--text-color);
+}
+
+
+
+
+
+
+
+//STEPPER CODE FROM DAISYUI
+
+
+// CARD CODE 
+
+.card {
+	position: relative;
+	padding: functions.toRem(16);
+	background: var(--card-bg);
+	box-shadow: 0 15px 25px rgba(0,0,0,0.25);
+	border-radius:functions.toRem(16);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: background 0.5s;
+	.content{
+		display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+		color: var(--card-text);
+		h2{
+            // font-weight: 500; already 700 defined above
+            font-size: 1.6em;
+            line-height: 1.4em;
+        }
+		h3{
+            font-weight: 500;
+            font-size: 1.4em;
+            line-height: 1.2em;
+        }
+		p{
+			font-weight: 400;
+			font-size: 1em;
+		}
+	}
+}
+
+
+.text-success{
+	color: var(--accent-color);
+  }
+  .text-error{
+	color: var(--error);
+  }
+  .text-warning{
+	color: var(--warning);
+  }
+
+  .font-bold{
+    font-weight: 700;
+  }
+
+
