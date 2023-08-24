@@ -49,7 +49,7 @@
         username,
         photoURL: $user?.photoURL ?? null,
         published: true,
-        bio: "I am the Walrus",
+        bio: "I am the King",
         links: [
           {
             title: "Test Link",
@@ -74,38 +74,57 @@
       <h6 class='text-warning'>(Usernames cannot be changed)</h6>
       <Button element='a' href="/login/photo" variant='outline'>Upload Profile Image</Button>
     {:else}
-      <form class="w-2/5" on:submit|preventDefault={confirmUsername}>
+      <form class="username-form" on:submit|preventDefault={confirmUsername}>
         <input
           type="text"
           placeholder="Username"
-          class="input w-full"
+          class="input"
+          class:error={!isValid && isTouched && !isAvailable}
           bind:value={username}
           on:input={checkAvailability}
           class:input-error={!isValid && isTouched}
           class:input-warning={isTaken}
           class:input-success={isAvailable && isValid && !loading}
         />
-        <div class="my-4 min-h-16 px-8 w-full">
+        <div class="error-box">
           {#if loading}
-            <p class="text-secondary">Checking availability of @{username}...</p>
+            <p>Checking availability of @{username}...</p>
           {/if}
   
           {#if !isValid && isTouched}
-            <p class="text-error text-sm">
+            <p class="text-error">
               must be 3-16 characters long, alphanumeric only
             </p>
           {/if}
   
           {#if isValid && !isAvailable && !loading}
-            <p class="text-warning text-sm">
+            <p class="text-warning">
               @{username} is not available
             </p>
           {/if}
   
           {#if isAvailable}
-            <button class="btn btn-success">Confirm username @{username} </button>
+            <Button element="button" type='submit' variant='outline'>Confirm username @{username} </Button>
           {/if}
         </div>
       </form>
     {/if}
   </AuthCheck>
+
+
+  <style lang='scss'>
+    .username-form{
+       width: 80%;
+       input{
+          width: 100%;
+       }
+       .error-box{
+        margin: 1rem 0;
+        min-height: 4rem;
+        padding: 0 2rem;
+        width: 100%;
+        text-align: center;
+       }
+    }
+
+  </style>

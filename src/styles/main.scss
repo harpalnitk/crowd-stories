@@ -12,6 +12,7 @@
 
 :root {
 	--bg-color: #f0f8ff;
+
 	--sidebar-color: #fff;
 	--header-color: #fff;
 	--text-color: #000;
@@ -19,12 +20,17 @@
 	--menu-background-color: #d5d5d5;
 	--menu-text-color: #222;
 	--border: #00000026;
+	--box-shadow-color-light: 255,255,255;
+	--box-shadow-color-dark: 0,0,0;
+
 	
 	--light-gray: #ededed;
 	--medium-gray: #d5d5d5;
 	--dark-gray: #303030;
+	
 	--sidebar-width: 250px;
 	--header-height: 64px;
+	
 	--error: #c24141;
 	--warning: #e7a917;
 	--card-bg:#fff;
@@ -54,6 +60,7 @@
 
 [data-theme='dark']{
     --bg-color: #24292d;
+
 	--sidebar-color: #000;
 	--header-color: #000;
 	--text-color: #fff;
@@ -63,6 +70,9 @@
 	--border: rgba(255, 255, 255, 0.15);
 	--card-bg:#323840;
 	--card-text:#ccc;
+
+	--box-shadow-color-light: 0,0,0;
+	--box-shadow-color-dark: 255,255,255;
 }
 
 body {
@@ -79,11 +89,20 @@ body {
 // style inputs globally
 input {
 	border: none;
+	outline: none;
 	padding: 0 20px;
-	height: 35px;
-	border-radius: 20px;
-	font-size: functions.toRem(14);
+	background: transparent;
+	height: 50px;
+	border-radius: functions.toRem(8);
+	font-size: functions.toRem(16);
 	color: var(--medium-gray);
+	box-shadow: -4px -4px 10px rgba(var(--box-shadow-color-light),.3),
+	inset 4px 4px 10px rgba(var(--box-shadow-color-dark),.1),
+	inset -4px -4px 10px rgba(var(--box-shadow-color-light),.3),
+	4px 4px 10px rgba(var(--box-shadow-color-dark),.1);
+}
+input.error {
+	border: 1px solid var(--error);
 }
 
 
@@ -147,6 +166,10 @@ a {
 	&:focus-visible {
 		outline: 2px solid var(--accent-color);
 		outline-offset: 2px;
+		&.error{
+			outline: 2px solid var(--error);
+			border:none;
+		}
 	}
 }
 
@@ -315,6 +338,7 @@ a {
 	transition: background 0.5s;
 	.content{
 		display: flex;
+		flex:1;
         justify-content: center;
         align-items: center;
         flex-direction: column;
@@ -332,6 +356,10 @@ a {
 		p{
 			font-weight: 400;
 			font-size: 1em;
+		}
+		span{
+			font-size: 0.875rem;
+			line-height: 1.25rem;
 		}
 	}
 }
@@ -352,3 +380,12 @@ a {
   }
 
 
+  //FORM CONTROLS
+  .form-control{
+	display: flex;
+	flex-direction: column;
+  }
+
+
+ 
+ 
